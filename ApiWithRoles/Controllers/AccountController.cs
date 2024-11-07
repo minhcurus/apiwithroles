@@ -60,7 +60,7 @@ namespace ApiWithRoles.Controllers
                     issuer: _configuration["Jwt:Issuer"],
                     expires: DateTime.Now.AddHours(double.Parse(_configuration["Jwt:ExpiryMinutes"]!)),
                     claims: authClaims,
-                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])), SecurityAlgorithms.HmacSha256)
+                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Key"])), SecurityAlgorithms.HmacSha256)
                 );
                 return Ok(new { Token = new JwtSecurityTokenHandler().WriteToken(token) });
             }
